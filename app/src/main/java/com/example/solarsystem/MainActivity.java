@@ -23,6 +23,23 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < count; i++) {
             TextView tv = new TextView(getApplicationContext());
             Animation blink = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.blink);
+            blink.setDuration((int) (Math.random() * (1000-200) + 200));
+            tv.startAnimation(blink);
+            tv.setRotation(45);
+            int size = (int) (Math.random() * (25-15) + 15);
+            tv.setWidth(size);
+            tv.setHeight(size);
+            tv.setX((float) (Math.random() * (1000-15) + 15));
+            tv.setY((float) (Math.random() * (2000-15) + 15));
+            tv.setBackgroundResource(R.drawable.white_square);
+            tv.setZ(-1);
+
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT
+            );
+            rl.addView(tv, params);
+
         }
     }
     private TextView mercury, venus, earth, sun;
@@ -80,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        generateStars(45);
     }
 
     private void positionCircles() {
